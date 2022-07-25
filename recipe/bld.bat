@@ -13,7 +13,8 @@ cmake ^
   -DCMAKE_BUILD_TYPE=Release ^
   -DBUILD_SHARED_LIBS=ON ^
   -DBUILD_TESTING=OFF ^
-  -DPYTHON_EXECUTABLE=${PREFIX}/bin/python
+  -DPYTHON_EXECUTABLE=${PREFIX}/bin/python || ^
+  type build\CMakeFiles\CMakeOutput.log & exit /b 1
 
 cd build
 if errorlevel 1 exit /b 1

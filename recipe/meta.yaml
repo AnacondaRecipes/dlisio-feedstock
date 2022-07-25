@@ -14,6 +14,8 @@ source:
   #- git_tag: v{{ version }}
 
 build:
+  # s390x is missing scikit-build package
+  skip: True # [s390x]
   missing_dso_whitelist:
    - libc++.1.dylib
    - libSystem.B.dylib
