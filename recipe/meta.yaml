@@ -1,0 +1,52 @@
+{% set name = "dlisio" %}
+{% set version = "0.3.6" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  # Using the git_url creates problems with missing submodules
+  # we don't need the submodules, because fmt is a conda package dependency: fmtlib
+  - url: https://github.com/equinor/dlisio/archive/refs/tags/v{{ version }}.zip
+
+  #- git_url: https://github.com/equinor/dlisio.git
+  #- git_tag: v{{ version }}
+
+build:
+  skip: True # [win]
+  missing_dso_whitelist:
+   - libc++.1.dylib
+   - libSystem.B.dylib
+  
+
+requirements:
+
+    # many of these requirements are not on defaults but the services channel
+    build: 
+      - git    
+      - make   # [unix]
+      - ninja  # [win]
+      - {{ compiler('cxx') }}
+      - cmake 
+      - fmtlib 
+      - mpark.variant 
+      - pytest
+      - pytest-runner
+      - pybind11 
+      - setuptools_scm
+      - layered-file-protocols 
+      - numpy
+      - scikit-build
+
+    run:
+      - numpy
+
+extra:
+  # extra info:
+  anaconda-services:
+    comment: "Built for customer"
+    recipe_maintainers:
+      - bkreider
+  recipe-maintainers:
+    - bkreider
