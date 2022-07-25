@@ -29,17 +29,20 @@ requirements:
       - ninja  # [win]
       - {{ compiler('cxx') }}
       - cmake 
+    host:
+      - python
       - fmtlib 
+      - setuptools_scm
       - mpark.variant 
       - pytest
       - pytest-runner
       - pybind11 
-      - setuptools_scm
       - layered-file-protocols 
       - numpy
       - scikit-build
 
     run:
+      - python
       - numpy
 
 extra:
