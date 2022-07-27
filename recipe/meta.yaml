@@ -29,7 +29,7 @@ requirements:
       - make   # [unix]
       - ninja  # [win]
       - {{ compiler('cxx') }}
-      - cmake 
+      - cmake
     host:
       - python
       - fmtlib 
@@ -54,3 +54,4 @@ extra:
       - bkreider
   recipe-maintainers:
     - bkreider
+ 

@@ -13,20 +13,24 @@ cmake ^
   -DCMAKE_BUILD_TYPE=Release ^
   -DBUILD_SHARED_LIBS=ON ^
   -DBUILD_TESTING=OFF ^
-  -DPYTHON_EXECUTABLE=${PREFIX}/bin/python || ^
-  type build\CMakeFiles\CMakeOutput.log & exit /b 1
+  -DBUILD_PYTHON=ON ^
+  -DPYTHON_EXECUTABLE=%PREFIX%\python ^
+  -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON
 
 cd build
 if errorlevel 1 exit /b 1
 
 :: Build.
 echo "Building..."
+echo "Where python.exe"
+where python.exe
 ninja
 if errorlevel 1 exit /b 1
 
 :: Install.
 echo "Installing..."
 ninja install
+
 if errorlevel 1 exit /b 1
 
 
